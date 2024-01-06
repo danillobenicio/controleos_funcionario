@@ -39,8 +39,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Equipamento</label>
-                                            <select class="form-control" style="width: 100%;">
-                                                <option selected="selected">Selecione</option>
+                                            <select class="form-control obg" style="width: 100%;">
+                                                <option selected="selected" value="">Selecione</option>
                                                 <option>Alaska</option>
                                             </select>
                                         </div>
@@ -48,12 +48,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descricao">Descreva o Problema</label>
-                                    <textarea class="form-control" id="descricao" rows="3"
+                                    <textarea class="form-control obg" id="descricao" rows="3"
                                         placeholder="Descrição"></textarea>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-sm btn-success">Cadastrar</button>
+                                <button type="button" onclick="return validarCampos('formCad')" class="btn btn-sm btn-success">Cadastrar</button>
                             </div>
                         </form>
                     </div>

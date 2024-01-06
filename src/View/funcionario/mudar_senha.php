@@ -35,29 +35,29 @@
                     <div class="card-light">
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" method="POST">
+                        <form role="form" method="POST" id="formSenha">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-group col-12">
                                         <label for="password_atual">Senha Atual</label>
-                                        <input type="password_atual" class="form-control" id="senha_atual">
+                                        <input type="password_atual" class="form-control obg" id="senha_atual">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-6">
                                         <label for="password_novo">Nova Senha</label>
-                                        <input type="password_novo" class="form-control" id="nova_senha" placeholder="Nova Senha">
+                                        <input type="password_novo" class="form-control obg" id="nova_senha" placeholder="Nova Senha">
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="password_repetir">Repetir Senha</label>
-                                        <input type="password_repetir" class="form-control" id="repetir_senha"
+                                        <input type="password_repetir" class="form-control obg" id="repetir_senha"
                                             placeholder="Repetir Senha">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-sm btn-success">Alterar</button>
+                                <button type="button" onclick="validarCampos('formSenha')" class="btn btn-sm btn-success">Alterar</button>
                             </div>
                         </form>
                     </div>

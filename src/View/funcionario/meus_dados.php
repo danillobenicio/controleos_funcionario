@@ -43,11 +43,11 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
                                        <label>Nome</label>
-                                        <input type="text" class="form-control obg" id="nome" name="nome" disabled>
+                                        <input type="text" class="form-control" id="nome" name="nome" disabled>
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>E-mail</label>
-                                        <input type="email" class="form-control obg" id="email" name="email" disabled>
+                                        <input type="email" class="form-control" id="email" name="email" disabled>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>CPF</label>
-                                        <input type="text" class="form-control obg cpf num" id="cpf" name="cpf" disabled>
+                                        <input type="text" class="form-control cpf num" id="cpf" name="cpf" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Setor</label>
-                                            <input type="text" class="form-control obg" id="setor" name="setor" disabled>
+                                            <input type="text" class="form-control" id="setor" name="setor" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -94,13 +94,13 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>Cidade</label>
-                                        <input type="text" class="form-control obg" id="cidade" name="cidade"
+                                        <input type="text" class="form-control" id="cidade" name="cidade"
                                             disabled>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Estado</label>
-                                            <input type="text" class="form-control obg" name="estado"
+                                            <input type="text" class="form-control" name="estado"
                                                 id="estado" disabled>
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer" id="button">
-                            <button type="button" onclick="alterarMeusDados('formAlt')" class="btn btn-sm btn-success">Alterar</button>
+                            <button type="button" onclick="validarCampos('formAlt')" class="btn btn-sm btn-success">Alterar</button>
                         </div>
                     </form>
                 </div>
@@ -123,6 +123,9 @@
     <?php  
         include_once PATH . 'Template/_includes/_scripts.php';
      ?>
+      <script src="../../Resource/js/buscar_cep.js"></script>
+      <script src="../../Template/mask/jquery.mask.min.js"></script>
+      <script src="../../Template/mask/mask.js"></script>
 </body>
 
 </html>
