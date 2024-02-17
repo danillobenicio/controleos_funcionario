@@ -33,3 +33,7 @@ function mostrarMensagem(ret) {
     }
 
 }
+
+function mostrarMensagemCustomizada($msg) {
+    toastr.info($msg);
+}

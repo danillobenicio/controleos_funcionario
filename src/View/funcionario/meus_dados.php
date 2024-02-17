@@ -109,7 +109,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer" id="button">
-                            <button type="button" onclick="validarCampos('formAlt')" class="btn btn-sm btn-success">Alterar</button>
+                            <button type="button" onclick="alterarMeusDados('formAlt')" class="btn btn-sm btn-success">Alterar</button>
                         </div>
                     </form>
                 </div>
@@ -126,6 +126,10 @@
       <script src="../../Resource/js/buscar_cep.js"></script>
       <script src="../../Template/mask/jquery.mask.min.js"></script>
       <script src="../../Template/mask/mask.js"></script>
+      <script src="../../Resource/ajax/usuario_ajax.js"></script>
+      <script>
+        detalharMeusDados();
+      </script>
 </body>
 
 </html>
