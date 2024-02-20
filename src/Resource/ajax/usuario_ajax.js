@@ -1,7 +1,7 @@
 async function detalharMeusDados() {
 
     try {
-       
+
         const dados = {
             id_user: codigoLogado(),
             endpoint: API_DETALHAR_USUARIO
@@ -38,8 +38,7 @@ async function detalharMeusDados() {
 
     } catch (error) {
         mostrarMensagemCustomizada(error.message);
-    }
-    finally {
+    } finally {
         removerLoad();
     }
 }
@@ -92,8 +91,8 @@ async function alterarMeusDados(formID) {
 }
 
 async function verificarSenha(formID, formID2) {
-    console.log(formID + ": " + formID2);
-    if (validarCampos(formID)){
+
+    if (validarCampos(formID)) {
 
         try {
             const dados = {
@@ -120,12 +119,12 @@ async function verificarSenha(formID, formID2) {
                 document.getElementById(formID).classList.add("d-none");
                 document.getElementById(formID2).classList.remove("d-none");
                 //mostrarMensagemCustomizada(MSG_SUCESSO);
-            } else if (objDados.RESULT == 13){
+            } else if (objDados.RESULT == 13) {
                 mostrarMensagemCustomizada(MSG_SENHA_ERRADA);
             }
 
         } catch (error) {
-            
+
         } finally {
             removerLoad();
         }
@@ -134,13 +133,13 @@ async function verificarSenha(formID, formID2) {
 
 
 async function alterarSenha(formID, formID2) {
-    
+
     if (await validarCamposAsync(formID)) {
 
         const nova_senha = document.getElementById("nova_senha").value;
         const repetir_senha = document.getElementById("repetir_senha").value;
 
-        if (nova_senha.length <  6) {
+        if (nova_senha.length < 6) {
             mostrarMensagemCustomizada(MSG_TAMANHO_SENHA);
         } else if (nova_senha != repetir_senha) {
             mostrarMensagemCustomizada(MSG_ERRO_SENHAS);
@@ -159,21 +158,17 @@ async function alterarSenha(formID, formID2) {
                     body: JSON.stringify(dados)
                 });
 
-                console.log(response);
-
                 if (!response.ok) {
                     throw new error(MSG_ERRO_CALL_API);
                 }
 
                 const objDados = await response.json();
 
-                console.log(objDados.RESULT);
-
                 if (objDados.RESULT == 1) {
                     mostrarMensagemCustomizada(MSG_SUCESSO);
                     await limparNotificacoesAsync(formID);
                     document.getElementById(formID).classList.add("d-none");
-                    document.getElementById(formID2).classList.remove("d-none");                   
+                    document.getElementById(formID2).classList.remove("d-none");
                 } else {
                     mostrarMensagemCustomizada(MSG_ERRO);
                 }
@@ -184,6 +179,5 @@ async function alterarSenha(formID, formID2) {
                 removerLoad();
             }
         }
-
     }
 }
