@@ -48,6 +48,7 @@ async function alterarMeusDados(formID) {
     if (validarCampos(formID)) {
 
         const dados = {
+            endpoint: API_ALTERAR_DADOS,
             id_user: codigoLogado(),
             setor: codigoSetorLogado(),
             nome: pegarValor("nome"),
@@ -60,8 +61,7 @@ async function alterarMeusDados(formID) {
             cidade: pegarValor("cidade"),
             estado: pegarValor("estado"),
             id_endereco: pegarValor("id_endereco"),
-            tipo_usuario: pegarValor("tipo_usuario"),
-            endpoint: API_ALTERAR_MEUS_DADOS
+            tipo_usuario: pegarValor("tipo_usuario")
         };
         console.log(dados);
         try {

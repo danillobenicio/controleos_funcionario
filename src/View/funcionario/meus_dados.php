@@ -42,7 +42,7 @@
                             <div id="dadosUsuario">
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
-                                       <label>Nome</label>
+                                        <label>Nome</label>
                                         <input type="text" class="form-control" id="nome" name="nome" disabled>
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
@@ -53,7 +53,8 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>Telefone</label>
-                                        <input type="text" class="form-control obg cel num" id="telefone" name="telefone">
+                                        <input type="text" class="form-control obg cel num" id="telefone"
+                                            name="telefone">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>CPF</label>
@@ -61,55 +62,54 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Setor</label>
-                                            <input type="text" class="form-control" id="setor" name="setor" disabled>
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Setor</label>
+                                        <input type="text" class="form-control" id="setor" name="setor" disabled>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12 col-sm-12">
-                                        <label>Cep</label>
-                                        <input type="text" class="form-control obg cep num" id="cep" name="cep"
-                                            placeholder="Cep" onblur="pesquisaCep(this.value)">
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label>Cep</label>
+                                    <input type="text" class="form-control obg cep num" id="cep" name="cep"
+                                        placeholder="Cep" onblur="pesquisaCep(this.value)">
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Bairro</label>
-                                            <input type="text" class="form-control obg" name="bairro" id="bairro">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Rua</label>
-                                            <input type="text" class="form-control obg" name="rua" id="rua">
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Bairro</label>
+                                        <input type="text" class="form-control obg" name="bairro" id="bairro">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6 col-sm-12">
-                                        <label>Cidade</label>
-                                        <input type="text" class="form-control" id="cidade" name="cidade"
-                                            disabled>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Estado</label>
-                                            <input type="text" class="form-control" name="estado"
-                                                id="estado" disabled>
-                                        </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Rua</label>
+                                        <input type="text" class="form-control obg" name="rua" id="rua">
                                     </div>
                                 </div>
-                            
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label>Cidade</label>
+                                    <input type="text" class="form-control" id="cidade" name="cidade" disabled>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Estado</label>
+                                        <input type="text" class="form-control" name="estado" id="estado" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer" id="button">
-                            <button type="button" onclick="alterarMeusDados('formAlt')" class="btn btn-sm btn-success">Alterar</button>
+                            <button type="button" onclick="alterarMeusDados('formAlt')"
+                                class="btn btn-sm btn-success">Alterar</button>
                         </div>
                     </form>
                 </div>
@@ -123,13 +123,13 @@
     <?php  
         include_once PATH . 'Template/_includes/_scripts.php';
      ?>
-      <script src="../../Resource/js/buscar_cep.js"></script>
-      <script src="../../Template/mask/jquery.mask.min.js"></script>
-      <script src="../../Template/mask/mask.js"></script>
-      <script src="../../Resource/ajax/usuario_ajax.js"></script>
-      <script>
+    <script src="../../Resource/js/buscar_cep.js"></script>
+    <script src="../../Template/mask/jquery.mask.min.js"></script>
+    <script src="../../Template/mask/mask.js"></script>
+    <script src="../../Resource/ajax/usuario_ajax.js"></script>
+    <script>
         detalharMeusDados();
-      </script>
+    </script>
 </body>
 
 </html>

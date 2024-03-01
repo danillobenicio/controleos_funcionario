@@ -1,11 +1,11 @@
 //#region URLs
 const API_DETALHAR_USUARIO = "detalharUsuarioApi";
-const API_ALTERAR_MEUS_DADOS = "alterarMeusDadosApi";
+const API_ALTERAR_DADOS = "alterarDadosApi";
 const API_VERIFICAR_SENHA_ATUAL = "verificarSenhaApi";
 const API_CONSULTAR_EQUIPAMENTOS_SETOR = "consultarEquipamentosAlocadosSetorApi";
 const API_ALTERAR_SENHA = "alterarSenhaApi";
+const API_ABRIR_CHAMADO = "abrirChamadoApi";
 //#endregion
-
 
 //#region Mensagens do ambiente
 const MSG_ERRO_CALL_API = "Erro ao chamar API.";
@@ -16,12 +16,10 @@ const MSG_TAMANHO_SENHA = "Senha deve ter no minímo 6 caracteres";
 const MSG_ERRO_SENHAS = "Senhas não conferem";
 //#endregion
 
-
 //#region Funções API
 function Base_Url_Api() {
-    return 'https://localhost/controleos/src/Resource/api/Funcionario_api.php';
+    return 'http://localhost/controleos/src/Resource/api/Funcionario_api.php';
 }
-
 
 function headerSemAutenticacao() 
 {
@@ -31,7 +29,6 @@ function headerSemAutenticacao()
     return header;
 }
 
-
 function headerComAutenticacao() 
 {
     const header = {
@@ -40,19 +37,15 @@ function headerComAutenticacao()
     return header;
 }
 
-
 function codigoLogado() 
 {
-    return 9;
+    return 12;
 }
-
 
 function codigoSetorLogado() 
 {
     return 1;
 }
-
-
 
 function limparNotificacoes(formID) {
     $("#" + formID + " input, #" + formID + " select, #" + formID + " textarea").each(
@@ -93,7 +86,6 @@ function validarCampos(formID) {
 
     return ret;
 }
-
 
 async function validarCamposAsync(formID) {
 
