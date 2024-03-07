@@ -16,6 +16,9 @@
  <!-- Mensagem JS -->
  <script src="../../Resource/js/mensagem.js"></script>
 
+ <!-- Const JS -->
+ <script src="../../Resource/js/const.js"></script>
+
  <!-- Funções JS -->
  <script src="../../Resource/js/funcoes.js"></script>
  
