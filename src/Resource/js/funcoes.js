@@ -5,6 +5,7 @@ const API_VERIFICAR_SENHA_ATUAL = "verificarSenhaApi";
 const API_CONSULTAR_EQUIPAMENTOS_SETOR = "consultarEquipamentosAlocadosSetorApi";
 const API_ALTERAR_SENHA = "alterarSenhaApi";
 const API_ABRIR_CHAMADO = "abrirChamadoApi";
+const API_FILTRAR_CHAMADOS = "filtrarChamadosApi";
 //#endregion
 
 //#region Mensagens do ambiente
@@ -132,4 +133,14 @@ function setarCamposValor(id, value) {
 
 function pegarValor(id) {
     return document.getElementById(id).value;
+}
+
+function mostrarElemento(id, mostrar) {
+
+    if (mostrar) {
+        document.getElementById(id).classList.remove("d-none");
+    } else {
+        document.getElementById(id).classList.add("d-none");
+    }
+
 }

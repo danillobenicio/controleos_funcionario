@@ -42,12 +42,12 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tipo">Situação</label>
-                                    <select class="form-control" style="width: 100%;">
-                                        <option value="<?SITUACAO_CHAMADO_TODOS?>" selected="selected">Todos</option>
-                                        <option value="<?SITUACAO_CHAMADO_AGUARDANDO_ATENDIMENTO?>">Aguardando
+                                    <select class="form-control" style="width: 100%;" id="situacao" onchange="filtrarChamados(this.value)">
+                                        <option value="<?=SITUACAO_CHAMADO_TODOS?>" selected="selected">Todos</option>
+                                        <option value="<?=SITUACAO_CHAMADO_AGUARDANDO_ATENDIMENTO?>">Aguardando
                                             Atendimento</option>
-                                        <option value="<?SITUACAO_CHAMADO_EM_ATENDIMENTO?>">Em Atendimento</option>
-                                        <option value="<?SITUACAO_CHAMADO_ENCERRADO?>">Encerrados</option>
+                                        <option value="<?=SITUACAO_CHAMADO_EM_ATENDIMENTO?>">Em Atendimento</option>
+                                        <option value="<?=SITUACAO_CHAMADO_ENCERRADO?>">Encerrados</option>
                                     </select>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="card form-consulta">
+                <div class="card form-consulta d-none" id="resultado">
 
                     <div class="row">
                         <div class="col-12">
@@ -64,27 +64,8 @@
                             </div>
 
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Data Abertura</th>
-                                            <th>Funcionário</th>
-                                            <th>Equipamento</th>
-                                            <th>Problema</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <button class="btn btn-xs btn-secondary" data-toggle="modal" data-target="#modal_detalhes">Ver detalhes</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                <table class="table table-hover" id="table_result">
+                                   
                                 </table>
                             </div>
                         </div>
@@ -101,6 +82,7 @@
     <?php  
         include_once PATH . 'Template/_includes/_scripts.php';
     ?>
+    <script src="../../Resource/ajax/chamados_ajax.js"></script>
 </body>
 
 </html>

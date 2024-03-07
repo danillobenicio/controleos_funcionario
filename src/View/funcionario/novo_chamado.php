@@ -39,21 +39,20 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Equipamento</label>
-                                            <select class="form-control obg" style="width: 100%;">
-                                                <option selected="selected" value="">Selecione</option>
-                                                <option>Alaska</option>
+                                            <select class="form-control obg" style="width: 100%;" id="novo_chamado">
+                                                
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="descricao">Descreva o Problema</label>
-                                    <textarea class="form-control obg" id="descricao" rows="3"
+                                    <textarea class="form-control obg" id="problema" rows="3"
                                         placeholder="Descrição"></textarea>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="button" onclick="return validarCampos('formCad')" class="btn btn-sm btn-success">Cadastrar</button>
+                                <button type="button" onclick="return abrirChamado('formCad')" class="btn btn-sm btn-success">Cadastrar</button>
                             </div>
                         </form>
                     </div>
@@ -68,6 +67,10 @@
     <?php  
         include_once PATH . 'Template/_includes/_scripts.php';
      ?>
+     <script src="../../Resource/ajax/chamados_ajax.js"></script>
+     <script>
+        consultarEquipamentosSetor();
+     </script>
 </body>
 
 </html>

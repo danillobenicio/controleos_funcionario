@@ -1,7 +1,6 @@
 async function detalharMeusDados() {
 
     try {
-
         const dados = {
             id_user: codigoLogado(),
             endpoint: API_DETALHAR_USUARIO
@@ -21,6 +20,8 @@ async function detalharMeusDados() {
 
         const objDados = await response.json();
         const dadosUser = objDados.RESULT;
+
+        console
 
         setarCamposValor("nome", dadosUser.nome_usuario);
         setarCamposValor("cpf", dadosUser.cpf_usuario);
