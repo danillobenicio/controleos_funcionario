@@ -15,7 +15,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
-    <img src="../../Template/dist/img/logoc.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
       style="opacity: .8">
     <span class="brand-text font-weight-light">ontrol OS | Funcionário</span>
   </a>
@@ -35,8 +35,6 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
         <li class="nav-item">
           <a href="meus_dados.php" class="nav-link">
             <i class="fa-regular fa-user"></i>
@@ -45,7 +43,7 @@
         </li>
         <li class="nav-item">
           <a href="mudar_senha.php" class="nav-link">
-            <i class="fa-regular fa-user"></i>
+          <i class="fa-solid fa-lock"></i>
             <p>Alterar Senha</p>
           </a>
         </li>
@@ -57,7 +55,7 @@
         </li>
         <li class="nav-item">
           <a href="chamados.php" class="nav-link">
-            <i class="fa-regular fa-keyboard"></i>
+          <i class="fa-solid fa-list"></i>
             <p>Chamados</p>
           </a>
         </li>
