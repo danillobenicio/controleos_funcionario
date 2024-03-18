@@ -83,6 +83,9 @@
         include_once PATH . 'Template/_includes/_scripts.php';
     ?>
     <script src="../../Resource/ajax/chamados_ajax.js"></script>
+    <script>
+        filtrarChamados();
+    </script>
 </body>
 
 </html>

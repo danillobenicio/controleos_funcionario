@@ -46,7 +46,7 @@
                     <br>
 
                     <label>Laudo</label>
-                    <textarea readonly class="form-control" id="tec_encerramento" rows="2"></textarea>
+                    <textarea readonly class="form-control" id="laudo" rows="2"></textarea>
                 </div>
                 
             </div>

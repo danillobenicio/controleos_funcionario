@@ -29,11 +29,22 @@ function mostrarMensagem(ret) {
     } else if (ret == 12) {
         toastr.warning('E-mail já cadastrado !');
     } else if (ret == 13) {
-        toastr.error('Nenhum usuário encontrado !');
+        toastr.error('Senha não encontrada!');
     }
 
 }
 
-function mostrarMensagemCustomizada($msg) {
-    toastr.info($msg);
+function mostrarMensagemCustomizada($msg, status) 
+{
+    switch (status) {
+        case "Error":
+            toastr.error($msg);
+            break;
+        case "Warning":
+            toastr.warning($msg);
+            break;
+        case "Success":
+            toastr.success($msg);
+            break;
+    }
 }

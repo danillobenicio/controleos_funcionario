@@ -31,7 +31,6 @@ async function consultarEquipamentosSetor() {
             combo_novo_chamado.appendChild(opt); // Estava 'combo_tela'
         });
         
-
     } catch (error) {
         console.log(error.message, error);
         mostrarMensagemCustomizada(error.message);
@@ -51,8 +50,6 @@ async function abrirChamado(formID) {
             id_usuario: codigoLogado()
         }
 
-        console.log(dados);
-
         try {
             load();
 
@@ -68,14 +65,17 @@ async function abrirChamado(formID) {
 
             const objDados = await response.json();
 
-            if (objDados == 1) {
-                mostrarMensagemCustomizada(MSG_SUCESSO);
+            result = objDados.RESULT;
+
+            if (result == 1) {
+                mostrarMensagemCustomizada(MSG_SUCESSO_CHAMADO_ABERTO, TOASTRSUCCESS);
+                
             } else {
-                mostrarMensagemCustomizada(MSG_ERRO);
+                mostrarMensagemCustomizada(MSG_ERRO, TOASTRERROR);
             }
 
         } catch (error) {
-            mostrarMensagemCustomizada(error.message);
+            mostrarMensagemCustomizada(error.message, TOASTRERROR);
         } finally {
             removerLoad();
         }
@@ -105,36 +105,88 @@ async function filtrarChamados() {
         }
 
         const objDados = await response.json();
+
         const chamados = objDados.RESULT;
 
-        const arrayChamados = Object.values(chamados);
-
         if (chamados.length === 0){
-            mostrarMensagemCustomizada('Dados não encontrados');
+            mostrarMensagemCustomizada(MSG_DADOS_NAO_ENCONTRADOS, TOASTRWARNING);
             return;
         }
 
-        
+        console.log(chamados);
+
         const tab_result = document.getElementById('table_result');
+
         let tab_content = '<thead>' +
                                 '<tr>' +
                                     '<th>Data Abertura</th>'+
+                                    '<th>Aberto Por</th>'+
+                                    '<th>Equipamento</th>'+
+                                    '<th>Problema</th>'+
+                                    '<th>Ação</th>'+
                                 '</tr>' +
                           '</thead>' +
                           '<tbody>';
-        let data_tr = '';
 
-        arrayChamados.forEach((item) => {
-            console.log(item.data_abertura);
-           /* data_tr += '<tr>' +
+        chamados.forEach((item) => {
+            tab_content += '<tr>' +
                             '<td>'+ item.data_abertura + '</td>' +
-                        '</tr>';*/
+                            '<td>'+ item.funcionario + '</td>' +
+                            '<td>'+ item.nome_tipo + ' | ' + item.nome_modelo + ' | ' + item.identificacao + '</td>' +
+                            '<td>'+ item.problema + '</td>' +
+                            '<td>';
+                                if (item.fk_id_tecnico_atendimento != null) {
+                                    tab_content += '<a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_detalhes" onclick="detalharChamado('+item.id_chamado+')">Detalhes</a>';
+                                }                                                             
+            tab_content +=  '</td>'
+                        '</tr>';
         });
 
-        tab_content += data_tr;
         tab_content += '</tbody>';
         tab_result.innerHTML = tab_content;
         mostrarElemento("resultado", true);
+        
+    } catch (error) {
+        mostrarMensagemCustomizada(error.message);
+    } finally {
+        removerLoad();
+    }
+}
+
+async function detalharChamado(id) {
+
+
+        const dados = {
+            endpoint: API_DETALHAR_CHAMADO,
+            id: id
+        }
+    
+    
+    try {
+        load();
+        const response = await fetch(Base_Url_Api(), {
+            method: 'POST',
+            headers: headerComAutenticacao(),
+            body: JSON.stringify(dados)
+        });
+
+        if (!response.ok) {
+            throw new Error(MSG_ERRO_CALL_API, TOASTRERROR);
+        }
+
+        const objDados = await response.json();
+
+        const chamado = objDados.RESULT;
+
+        document.getElementById("equipamento").textContent = chamado.nome_tipo + " " + chamado.nome_modelo + " " + chamado.identificacao;
+        document.getElementById("data_abertura").textContent = chamado.data_abertura;
+        document.getElementById("problema").textContent = chamado.problema;
+        document.getElementById("data-atendimento").textContent = chamado.data_atendimento;
+        document.getElementById("tec_atendimento").textContent = chamado.fk_id_tecnico_atendimento;
+        document.getElementById("encerramento").textContent = chamado.data_encerramento;
+        document.getElementById("tec_encerramento").textContent = chamado.fk_id_tecnico_encerramento;
+        document.getElementById("laudo").textContent = chamado.laudo;
+        
         
     } catch (error) {
         mostrarMensagemCustomizada(error.message);

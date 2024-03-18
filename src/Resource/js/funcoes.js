@@ -1,5 +1,6 @@
 //#region Funções API
-function Base_Url_Api() {
+function Base_Url_Api() 
+{
     return 'http://localhost/controleos/src/Resource/api/Funcionario_api.php';
 }
 
@@ -11,22 +12,26 @@ function headerSemAutenticacao()
     return header;
 }
 
-function headerComAutenticacao() 
+function headerComAutenticacao()
 {
     const header = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + GetTnk(),
+
     };
     return header;
 }
 
 function codigoLogado() 
 {
-    return 12;
+    const dados = GetTnkValue();
+    return dados.cod_user;
 }
 
 function codigoSetorLogado() 
 {
-    return 1;
+    const dados = GetTnkValue();
+    return dados.cod_setor;
 }
 
 function limparNotificacoes(formID) {
@@ -116,12 +121,69 @@ function pegarValor(id) {
     return document.getElementById(id).value;
 }
 
-function mostrarElemento(id, mostrar) {
-
+function mostrarElemento(id, mostrar) 
+{
     if (mostrar) {
         document.getElementById(id).classList.remove("d-none");
     } else {
         document.getElementById(id).classList.add("d-none");
     }
+}
 
+function AddTnk(t) 
+{
+    localStorage.setItem('user_tnk', t);
+}
+
+function GetTnkValue() 
+{
+    var token = GetTnk();
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var j = decodeURIComponent(window.atob(base64).split('').map(function
+    (c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    
+    }).join(''));
+
+    return JSON.parse(j);
+}
+
+function GetTnk() 
+{
+    if (localStorage.getItem('user_tkn') != null)
+        return localStorage.getItem('user_tkn');
+}
+
+function setNomeLogado(nome) 
+{
+    localStorage.setItem("nome_logado", nome);
+}
+
+function getNomeLogado() 
+{
+    return localStorage.getItem("nome_logado");
+}
+
+function MostrarNomeLogin() 
+{
+    if (localStorage.getItem('nome_logado') != null)
+        document.getElementById("nome_logado").innerHTML = getNomeLogado();
+}
+
+function ClearTnk() 
+{
+    localStorage.clear();
+}
+
+function Sair() 
+{
+    ClearTnk();
+    location = "login.php";
+}
+
+function Verify() 
+{
+    if (localStorage.getItem('user_tkn') === null)
+        location = "login.php";
 }

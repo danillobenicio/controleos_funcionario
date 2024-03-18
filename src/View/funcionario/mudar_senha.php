@@ -44,7 +44,7 @@
                                         <input type="password" class="form-control obg" id="senha_atual">
                                     </div>
                                     <button type="button" onclick="verificarSenha('formSenhaAtual', 'formNovaSenha')"
-                                        class="btn btn-sm btn-success">Verificar Senha</button>
+                                        class="btn btn-sm btn-success" id="button_verificar_senha">Verificar Senha</button>
                                 </div>
                             </form>
                             <form role="form" method="POST" id="formNovaSenha" class="d-none">
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <button type="button" onclick="alterarSenha('formNovaSenha', 'formSenhaAtual')"
-                                    class="btn btn-sm btn-success">Alterar</button>
+                                    class="btn btn-sm btn-success" id="button_alterar_senha">Alterar</button>
                             </form>
                         </div>
                     </div>
@@ -77,6 +77,11 @@
         include_once PATH . 'Template/_includes/_scripts.php';
      ?>
     <script src="../../Resource/ajax/usuario_ajax.js"></script>
+    <script>
+        keyPressEnter('senha_atual', 'button_verificar_senha');
+        keyPressEnter('nova_senha', 'button_alterar_senha');
+        keyPressEnter('repetir_senha', 'button_alterar_senha');
+    </script>
 </body>
 
 </html>

@@ -21,7 +21,7 @@ async function detalharMeusDados() {
         const objDados = await response.json();
         const dadosUser = objDados.RESULT;
 
-        console
+        console.log(dadosUser);
 
         setarCamposValor("nome", dadosUser.nome_usuario);
         setarCamposValor("cpf", dadosUser.cpf_usuario);
@@ -65,11 +65,12 @@ async function alterarMeusDados(formID) {
             tipo_usuario: pegarValor("tipo_usuario")
         };
         console.log(dados);
-        try {
+        try 
+        {
             load();
             const response = await fetch(Base_Url_Api(), {
                 method: "POST",
-                headers: headerComAutenticacao,
+                headers: headerComAutenticacao(),
                 body: JSON.stringify(dados)
             });
 
@@ -77,17 +78,17 @@ async function alterarMeusDados(formID) {
                 throw new Error(MSG_ERRO_CALL_API);
             }
 
-            const objDados = await response.text();
+            const objDados = await response.json();
 
-            console.log("Response Body: ", objDados);
+            const result = objDados.RESULT;
+
+            mostrarMensagem(result);
 
         } catch (error) {
             mostrarMensagemCustomizada(error.message);
         } finally {
             removerLoad();
         }
-
-
     }
 }
 
@@ -116,12 +117,13 @@ async function verificarSenha(formID, formID2) {
 
             const objDados = await response.json();
 
-            if (objDados.RESULT == 1) {
+            result = objDados.RESULT;
+
+            if (result == 1) {
                 document.getElementById(formID).classList.add("d-none");
                 document.getElementById(formID2).classList.remove("d-none");
-                //mostrarMensagemCustomizada(MSG_SUCESSO);
             } else if (objDados.RESULT == 13) {
-                mostrarMensagemCustomizada(MSG_SENHA_ERRADA);
+                mostrarMensagem(result);
             }
 
         } catch (error) {
@@ -141,9 +143,9 @@ async function alterarSenha(formID, formID2) {
         const repetir_senha = document.getElementById("repetir_senha").value;
 
         if (nova_senha.length < 6) {
-            mostrarMensagemCustomizada(MSG_TAMANHO_SENHA);
+            mostrarMensagemCustomizada(MSG_TAMANHO_SENHA, TOASTRWARNING);
         } else if (nova_senha != repetir_senha) {
-            mostrarMensagemCustomizada(MSG_ERRO_SENHAS);
+            mostrarMensagemCustomizada(MSG_ERRO_SENHAS, TOASTRWARNING);
         } else {
             const dados = {
                 endpoint: API_ALTERAR_SENHA,
@@ -166,16 +168,16 @@ async function alterarSenha(formID, formID2) {
                 const objDados = await response.json();
 
                 if (objDados.RESULT == 1) {
-                    mostrarMensagemCustomizada(MSG_SUCESSO);
+                    mostrarMensagemCustomizada(MSG_SUCESSO, TOASTRSUCCESS);
                     await limparNotificacoesAsync(formID);
                     document.getElementById(formID).classList.add("d-none");
                     document.getElementById(formID2).classList.remove("d-none");
                 } else {
-                    mostrarMensagemCustomizada(MSG_ERRO);
+                    mostrarMensagemCustomizada(MSG_ERRO, TOASTRERROR);
                 }
 
             } catch (error) {
-                mostrarMensagemCustomizada(error.message);
+                mostrarMensagemCustomizada(error.message, TOASTRERROR);
             } finally {
                 removerLoad();
             }
