@@ -128,6 +128,7 @@
     <script src="../../Template/mask/mask.js"></script>
     <script src="../../Resource/ajax/usuario_ajax.js"></script>
     <script>
+        Verify();
         detalharMeusDados();
     </script>
 </body>

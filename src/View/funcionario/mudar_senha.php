@@ -78,6 +78,7 @@
      ?>
     <script src="../../Resource/ajax/usuario_ajax.js"></script>
     <script>
+        Verify();
         keyPressEnter('senha_atual', 'button_verificar_senha');
         keyPressEnter('nova_senha', 'button_alterar_senha');
         keyPressEnter('repetir_senha', 'button_alterar_senha');

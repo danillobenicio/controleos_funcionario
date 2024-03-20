@@ -1,7 +1,16 @@
 //#region Funções API
 function Base_Url_Api() 
 {
-    return 'http://localhost/controleos/src/Resource/api/Funcionario_api.php';
+    return 'https://localhost/controleos/src/Resource/api/Funcionario_api.php';
+}
+
+function Base_Url_Intranet()
+{
+    return "https://localhost/controleosFuncionario/src/View/";
+}
+
+function redirecionaPagina(pagina) {
+    window.location = Base_Url_Intranet() + pagina;
 }
 
 function headerSemAutenticacao() 
@@ -121,6 +130,7 @@ function pegarValor(id) {
     return document.getElementById(id).value;
 }
 
+
 function mostrarElemento(id, mostrar) 
 {
     if (mostrar) {
@@ -151,8 +161,8 @@ function GetTnkValue()
 
 function GetTnk() 
 {
-    if (localStorage.getItem('user_tkn') != null)
-        return localStorage.getItem('user_tkn');
+    if (localStorage.getItem('user_tnk') != null)
+        return localStorage.getItem('user_tnk');
 }
 
 function setNomeLogado(nome) 
@@ -179,11 +189,11 @@ function ClearTnk()
 function Sair() 
 {
     ClearTnk();
-    location = "login.php";
+    window.location.href = 'https://localhost/controleosFuncionario/src/View/acesso/login.php';
 }
 
 function Verify() 
 {
-    if (localStorage.getItem('user_tkn') === null)
-        location = "login.php";
+    if (localStorage.getItem('user_tnk') === null)
+        Sair();
 }

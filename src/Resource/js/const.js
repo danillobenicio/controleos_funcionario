@@ -6,6 +6,8 @@ const API_ALTERAR_SENHA = "alterarSenhaApi";
 const API_ABRIR_CHAMADO = "abrirChamadoApi";
 const API_FILTRAR_CHAMADOS = "filtrarChamadosApi";
 const API_DETALHAR_CHAMADO = "detalharChamadoApi";
+const API_ACESSAR = "validarLoginApi";
+const NAO_AUTORIZADO = -1000;
 
 const MSG_ERRO_CALL_API = "Erro ao chamar API.";
 const MSG_SENHA_ERRADA = "Senha incorreta";
@@ -16,6 +18,7 @@ const MSG_ERRO_SENHAS = "Senhas não conferem";
 const MSG_SUCESSO_ALTERACAO = "Dados alterados com sucesso";
 const MSG_SUCESSO_CHAMADO_ABERTO = "Chamado aberto com sucesso";
 const MSG_DADOS_NAO_ENCONTRADOS = "Dados não encontrados";
+const MSG_USUARIO_NAO_ENCONTRADO = "Usuário não encontrado";
 const TOASTRERROR = "Error";
 const TOASTRWARNING = "Warning";
 const TOASTRSUCCESS = "Success";

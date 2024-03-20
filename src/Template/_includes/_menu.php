@@ -17,7 +17,7 @@
   <a href="#" class="brand-link">
     <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
       style="opacity: .8">
-    <span class="brand-text font-weight-light">ontrol OS | Funcionário</span>
+    <span class="brand-text font-weight-light">Control OS | Funcionário</span>
   </a>
 
   <!-- Sidebar -->
@@ -28,7 +28,7 @@
         <img src="../../Template/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Usuário Logado</a>
+        <a href="#" class="d-block" id="nome_logado"></a>
       </div>
     </div>
 
@@ -60,7 +60,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
+          <a href="" onclick="Sair()" class="nav-link">
             <i class="fa-regular fa-exit"></i>
             <p>Sair</p>
           </a>

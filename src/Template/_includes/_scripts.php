@@ -27,3 +27,8 @@
 
  <!--jQuery Mask Plugin-->
  <script src="../../Template/plugins/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+
+ <!-- Função para exibir nome do usuário logado -->
+ <script>
+    MostrarNomeLogin();
+ </script>

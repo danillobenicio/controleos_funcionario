@@ -84,6 +84,7 @@
     ?>
     <script src="../../Resource/ajax/chamados_ajax.js"></script>
     <script>
+        Verify();
         filtrarChamados();
     </script>
 </body>

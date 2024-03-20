@@ -21,7 +21,10 @@ async function detalharMeusDados() {
         const objDados = await response.json();
         const dadosUser = objDados.RESULT;
 
-        console.log(dadosUser);
+        if (objDados.RESULT == NAO_AUTORIZADO) {
+            Sair();
+            return;
+        }
 
         setarCamposValor("nome", dadosUser.nome_usuario);
         setarCamposValor("cpf", dadosUser.cpf_usuario);
@@ -35,7 +38,7 @@ async function detalharMeusDados() {
         setarCamposValor("bairro", dadosUser.bairro);
         setarCamposValor("id_endereco", dadosUser.id_endereco);
         setarCamposValor("id_usuario", dadosUser.id_usuario);
-        setarCamposValor("tipo_usuario", dadosUser.tipo_usuario);
+        setarCamposValor("tipo_usuario", dadosUser.tipo_usuario);  
 
     } catch (error) {
         mostrarMensagemCustomizada(error.message);
@@ -181,6 +184,54 @@ async function alterarSenha(formID, formID2) {
             } finally {
                 removerLoad();
             }
+        }
+    }
+}
+
+async function acessar(formID) {
+
+    if (validarCampos(formID)) {
+
+        try {
+            const dados = {
+                endpoint: API_ACESSAR,
+                login_usuario: pegarValor("login"),
+                senha_usuario: pegarValor("senha")
+            }
+
+            load();
+
+            const response = await fetch(Base_Url_Api(), {
+                method: "POST",
+                headers: headerSemAutenticacao(),
+                body: JSON.stringify(dados)
+            })
+
+            if (!response.ok) {
+                throw new Error(MSG_ERRO_CALL_API);
+            }
+
+            const objDados = await response.json();
+
+            result = objDados.RESULT;
+
+            if (result == -7) {
+                mostrarMensagemCustomizada(MSG_USUARIO_NAO_ENCONTRADO, TOASTRERROR);
+                return;
+            }
+            // Add o token no LocalStorage
+            AddTnk(result);
+
+            const resultToken = GetTnkValue();
+
+            setNomeLogado(resultToken.nome_user);
+            
+            redirecionaPagina('funcionario/chamados.php');
+
+        } catch (error) {
+
+        } finally {
+            removerLoad();
         }
     }
 }
