@@ -117,6 +117,11 @@ async function filtrarChamados() {
 
         const tab_result = document.getElementById('table_result');
 
+        if (objDados.RESULT == NAO_AUTORIZADO) {
+            Sair();
+            return;
+        }
+
         let tab_content = '<thead>' +
                                 '<tr>' +
                                     '<th>Data Abertura</th>'+
@@ -177,6 +182,11 @@ async function detalharChamado(id) {
         const objDados = await response.json();
 
         const chamado = objDados.RESULT;
+
+        if (objDados.RESULT == NAO_AUTORIZADO) {
+            Sair();
+            return;
+        }
 
         document.getElementById("equipamento").textContent = chamado.nome_tipo + " " + chamado.nome_modelo + " " + chamado.identificacao;
         document.getElementById("data_abertura").textContent = chamado.data_abertura;

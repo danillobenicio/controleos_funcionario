@@ -72,3 +72,6 @@
   </div>
   <!-- /.sidebar -->
 </aside>
+<script>
+  MostrarNomeLogin();
+</script>

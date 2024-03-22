@@ -85,6 +85,11 @@ async function alterarMeusDados(formID) {
 
             const result = objDados.RESULT;
 
+            if (objDados.RESULT == NAO_AUTORIZADO) {
+                Sair();
+                return;
+            }
+
             mostrarMensagem(result);
 
         } catch (error) {
@@ -121,6 +126,11 @@ async function verificarSenha(formID, formID2) {
             const objDados = await response.json();
 
             result = objDados.RESULT;
+
+            if (objDados.RESULT == NAO_AUTORIZADO) {
+                Sair();
+                return;
+            }
 
             if (result == 1) {
                 document.getElementById(formID).classList.add("d-none");
@@ -169,6 +179,11 @@ async function alterarSenha(formID, formID2) {
                 }
 
                 const objDados = await response.json();
+
+                if (objDados.RESULT == NAO_AUTORIZADO) {
+                    Sair();
+                    return;
+                }
 
                 if (objDados.RESULT == 1) {
                     mostrarMensagemCustomizada(MSG_SUCESSO, TOASTRSUCCESS);
