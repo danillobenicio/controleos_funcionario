@@ -22,3 +22,7 @@ const MSG_USUARIO_NAO_ENCONTRADO = "Usuário não encontrado";
 const TOASTRERROR = "Error";
 const TOASTRWARNING = "Warning";
 const TOASTRSUCCESS = "Success";
+
+const SITUACAO_AGUARDANDO = "Aguardando Atendimento";
+const SITUACAO_EM_ATENDIMENTO = "Em atendimento";
+const SITUACAO_ENCERRADA = "Chamado Encerrado";

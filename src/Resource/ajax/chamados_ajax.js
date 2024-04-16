@@ -113,35 +113,46 @@ async function filtrarChamados() {
             return;
         }
 
-        console.log(chamados);
-
         const tab_result = document.getElementById('table_result');
 
         if (objDados.RESULT == NAO_AUTORIZADO) {
             Sair();
             return;
-        }
-
+        } 
+       
         let tab_content = '<thead>' +
                                 '<tr>' +
                                     '<th>Data Abertura</th>'+
                                     '<th>Aberto Por</th>'+
                                     '<th>Equipamento</th>'+
                                     '<th>Problema</th>'+
+                                    '<th>Situação</th>'+
                                     '<th>Ação</th>'+
                                 '</tr>' +
                           '</thead>' +
                           '<tbody>';
 
+    
         chamados.forEach((item) => {
+
+            if (item.data_atendimento == null) {
+                situacao = SITUACAO_AGUARDANDO;
+            } else if (item.data_encerramento != null) {
+                situacao = SITUACAO_ENCERRADA;
+            }else if (item.data_atendimento != null && item.data_encerramento == null) {
+                situacao = SITUACAO_EM_ATENDIMENTO;
+            }
+
+            //situacao = verificarSituacao(item.data_atendimento, item.data_encerramento);
             tab_content += '<tr>' +
                             '<td>'+ item.data_abertura + '</td>' +
                             '<td>'+ item.funcionario + '</td>' +
                             '<td>'+ item.nome_tipo + ' | ' + item.nome_modelo + ' | ' + item.identificacao + '</td>' +
                             '<td>'+ item.problema + '</td>' +
+                            '<td>'+ situacao + '</td>' +
                             '<td>';
                                 if (item.fk_id_tecnico_atendimento != null) {
-                                    tab_content += '<a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_detalhes" onclick="detalharChamado('+item.id_chamado+')">Detalhes</a>';
+                                    tab_content += '<a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_detalhes" onclick="detalharChamado(' + item.id_chamado + ')">Detalhes</a>';
                                 }                                                             
             tab_content +=  '</td>'
                         '</tr>';
@@ -158,9 +169,12 @@ async function filtrarChamados() {
     }
 }
 
+
+
+
 async function detalharChamado(id) {
 
-
+   
         const dados = {
             endpoint: API_DETALHAR_CHAMADO,
             id: id
@@ -182,6 +196,7 @@ async function detalharChamado(id) {
         const objDados = await response.json();
 
         const chamado = objDados.RESULT;
+        console.log(chamado);
 
         if (objDados.RESULT == NAO_AUTORIZADO) {
             Sair();
@@ -191,16 +206,78 @@ async function detalharChamado(id) {
         document.getElementById("equipamento").textContent = chamado.nome_tipo + " " + chamado.nome_modelo + " " + chamado.identificacao;
         document.getElementById("data_abertura").textContent = chamado.data_abertura;
         document.getElementById("problema").textContent = chamado.problema;
-        document.getElementById("data-atendimento").textContent = chamado.data_atendimento;
-        document.getElementById("tec_atendimento").textContent = chamado.fk_id_tecnico_atendimento;
-        document.getElementById("encerramento").textContent = chamado.data_encerramento;
-        document.getElementById("tec_encerramento").textContent = chamado.fk_id_tecnico_encerramento;
-        document.getElementById("laudo").textContent = chamado.laudo;
+        document.getElementById("id_chamado").value = chamado.id_chamado;
+        document.getElementById("data_atendimento").textContent = chamado.data_atendimento;
+        document.getElementById("tec_atendimento").textContent = chamado.tecnico_atendimento;
+        document.getElementById("id_alocar").value = chamado.fk_id_alocar;
         
+        document.getElementById("encerramento").textContent = chamado.data_encerramento;
+        document.getElementById("tec_encerramento").textContent = chamado.tecnico_encerramento;
+        document.getElementById("laudo").textContent = chamado.laudo;
+            
+        //const situacao_atual = verificarSituacao(chamado.data_atendimento, chamado.data_encerramento);
+    
+        if (chamado.data_atendimento == null) {
+            situacao_atual = SITUACAO_AGUARDANDO;
+            $("#dadosEncerramento").hide();
+        } else if (chamado.data_encerramento != null) {
+            situacao_atual = SITUACAO_ENCERRADA;
+            $("#dadosEncerramento").show();
+        }else if (chamado.data_atendimento != null && chamado.data_encerramento == null) {
+            situacao_atual = SITUACAO_EM_ATENDIMENTO;
+            $("#dadosEncerramento").hide();
+        }
+
+        switch (situacao_atual) {
+            case SITUACAO_AGUARDANDO:
+                mostrarElemento("tecnicoAtendimento", false);
+                mostrarElemento("tecnicoEncerramento", false);
+                mostrarElemento("iniciarAtendimento", true);
+                mostrarElemento("finalizarAtendimento", false);
+                break;
+            case SITUACAO_EM_ATENDIMENTO:
+                mostrarElemento("tecnicoAtendimento", true);
+                mostrarElemento("tecnicoEncerramento", false);
+                mostrarElemento("iniciarAtendimento", false);
+                mostrarElemento("finalizarAtendimento", true);
+          
+                break;
+    
+            case SITUACAO_ENCERRADA:
+                mostrarElemento("tecnicoAtendimento", true);
+                mostrarElemento("tecnicoEncerramento", true);
+                mostrarElemento("iniciarAtendimento", false);
+                mostrarElemento("finalizarAtendimento", false);
+                document.getElementById("laudo").disabled = true;
+                document.getElementById("encerramento").disabled = true;
+                document.getElementById("tec_encerramento").disabled = true;
+                $("#encerramento").show();
+                $("#tec_encerramento").show();
+                $("#laudo").show();
+                //habilitarCampo("laudo", true);
+                break;
+        }
         
     } catch (error) {
         mostrarMensagemCustomizada(error.message);
     } finally {
         removerLoad();
     }
+}
+
+
+function verificarSituacao(data_atendimento, data_encerramento) {
+
+    let situacao = "";
+
+    if (data_atendimento == null) {
+        situacao = SITUACAO_AGUARDANDO;
+    } else if (data_encerramento != null) {
+        situacao = SITUACAO_ENCERRADA;
+    }else if (data_atendimento != null && data_encerramento == null) {
+        situacao = SITUACAO_EM_ATENDIMENTO;
+    }
+
+    return situacao;
+
 }
